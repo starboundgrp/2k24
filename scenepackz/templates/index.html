@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <title>scenepack finder</title>
+  <style>
+    body {
+      background-color: #ffecd1;
+      color: #000;
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+      border: 1px solid #000;
+      background: #fff4e0;
+      color: #000;
+    }
+    button {
+      cursor: pointer;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    .results {
+      margin-top: 2rem;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>scenepack search bot</h2>
+  <form method="post">
+    <input type="text" name="query" placeholder="try something like harry potter scenepack" value="{{ query }}">
+    <button type="submit">search</button>
+  </form>
+
+  {% if results %}
+    <div class="results">
+      <h3>youtube links</h3>
+      <ul>
+        {% for link, d in results.youtube %}
+          <li>
+            <a href="{{ link }}" target="_blank">{{ link }}</a><br>
+            ↳ download sites:
+            <ul>
+              <li><a href="{{ d.cobalt }}" target="_blank">cobalt.tools</a></li>
+              <li><a href="{{ d.y2mate }}" target="_blank">y2mate.ltd</a></li>
+              <li><a href="{{ d.snapinsta }}" target="_blank">snapinsta.app</a></li>
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <h3>instagram hashtag</h3>
+      <p><a href="{{ results.instagram }}" target="_blank">{{ results.instagram }}</a></p>
+    </div>
+  {% endif %}
+</body>
+</html>
