@@ -1,12 +1,14 @@
+import os
 from flask import Flask, render_template, request
 from serpapi import GoogleSearch
 
 app = Flask(__name__)
 
 def google_search(query):
+    api_key = os.getenv("SERPAPI_KEY")
     params = {
         "q": f"site:youtube.com {query}",
-        "api_key": "0498f7b260b93fd8e5e2642baa799d016aae7b651538ae2d75168d009449a84c",
+        "api_key": api_key,
         "num": 10
     }
     search = GoogleSearch(params)
